@@ -1,0 +1,710 @@
+/* =========================
+   Fonts
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* =========================
+   Reset & Variables
+========================= */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-pink: #fdeeee;
+    --color-white: #ffffff;
+    --color-black: #2b2b2b;
+    --color-text-pink: #ff7a8a;
+    --color-heart: #ff6f81;
+    --color-bg-letter: #fff8e9;
+    --color-border: #e4d6c8;
+    --shadow-soft: 0 8px 24px rgba(0, 0, 0, .08);
+    --shadow-card: 0 20px 60px rgba(0, 0, 0, .25);
+}
+
+html { height: 100%; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--color-pink), #fff5f5 60%, var(--color-pink));
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* =========================
+   Wrapper / Background Grid
+========================= */
+#wrapper {
+    position: relative;
+    min-height: 100vh;
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .85) 25%, rgba(255, 255, 255, .85) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .85) 75%, rgba(255, 255, 255, .85) 76%, transparent 77%),
+        linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .85) 25%, rgba(255, 255, 255, .85) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .85) 75%, rgba(255, 255, 255, .85) 76%, transparent 77%);
+    background-size: 80px 80px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* =========================
+   Top Flags
+========================= */
+.flag__birthday {
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-200px);
+    animation: translateYFlag 1.2s .5s forwards;
+}
+@keyframes translateYFlag {
+    to { transform: translateY(-10px); }
+}
+.flag__birthday .flag__left {
+    transform: rotate(-10deg) translate(-20px, 30px);
+}
+.flag__birthday .flag__right {
+    transform: rotate(10deg) translate(20px, 30px) scaleX(-1);
+}
+
+/* =========================
+   Layout
+========================= */
+.content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    padding: 3rem 2rem 0;
+    gap: 2rem;
+}
+.content .left,
+.content .right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content .left  { width: 40%; }
+.content .right { width: 60%; }
+
+/* =========================
+   Button
+========================= */
+.left .btn {
+    transform: scale(0);
+    animation: scaleCircle 1s 6s forwards ease-in-out;
+}
+#btn__letter {
+    position: relative;
+    margin-top: 30px;
+    background: linear-gradient(135deg, #ff8a9b, var(--color-text-pink));
+    outline: none;
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: 3px solid var(--color-black);
+    font-family: "Sriracha", cursive;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all .35s ease;
+    box-shadow: var(--shadow-soft);
+}
+#btn__letter:active { transform: scale(.95); }
+#btn__letter i      { margin-left: 8px; transition: transform .3s; }
+#btn__letter:hover  {
+    background: linear-gradient(135deg, #ff6f81, #ff5068);
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(255, 111, 129, .45);
+    transform: translateY(-2px);
+}
+#btn__letter:hover i { animation: rotateHeart 1s infinite linear; }
+
+@keyframes rotateHeart {
+    0%, 50%, 100% { transform: rotate(0deg); }
+    25%           { transform: rotate(12deg); }
+    75%           { transform: rotate(-12deg); }
+}
+
+/* =========================
+   Title
+========================= */
+.title {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: "Titan One", sans-serif;
+    font-size: 3rem;
+    flex-direction: column;
+    perspective: 1000px;
+}
+.title .happy,
+.title .birthday {
+    position: relative;
+    text-shadow:
+        4px 4px var(--color-black),
+        -4px 4px var(--color-black),
+        4px -4px var(--color-black),
+        -4px -4px var(--color-black),
+        4px 8px 0 var(--color-black);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+.title .happy           { color: var(--color-white); }
+.title .birthday        { color: var(--color-text-pink); }
+.title .happy span,
+.title .birthday span {
+    transform: translateY(50px);
+    opacity: 0;
+    visibility: hidden;
+    animation: txtTranslateY .5s var(--t) forwards;
+}
+@keyframes txtTranslateY {
+    to { transform: translateY(0); opacity: 1; visibility: visible; }
+}
+
+.title .hat {
+    position: absolute;
+    right: 45px;
+    top: -350px;
+    transform: rotate(-40deg);
+    z-index: -1;
+    animation: topHat 2.5s 4s forwards ease;
+}
+@keyframes topHat {
+    20%, 30% { top: -30px; transform-origin: left; transform: rotate(-40deg); }
+    35%, 100% { top: -30px; transform: rotate(0deg); }
+}
+
+/* =========================
+   Date & Name Pill
+========================= */
+.date__of__birth,
+.name {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(135deg, #ff8a9b, var(--color-text-pink));
+    border-radius: 50px;
+    margin-top: 20px;
+    font-family: "Sriracha", cursive;
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+}
+.date__of__birth {
+    border: 3px solid var(--color-black);
+    position: relative;
+    transform: translateY(-100px);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    animation: dateOfBirth 3s 4.5s forwards;
+}
+@keyframes dateOfBirth {
+    20%, 40% {
+        width: 0; height: 0; transform: translateY(0);
+        opacity: 1; visibility: visible;
+    }
+    45% {
+        width: 300px; height: 0; transform: translateY(0);
+        opacity: 1; visibility: visible;
+    }
+    50%, 100% {
+        width: 300px; height: 50px; transform: translateY(0);
+        opacity: 1; visibility: visible;
+    }
+}
+.name {
+    position: absolute;
+    padding: 4px 20px;
+    bottom: -20px;
+    border: 3px solid var(--color-black);
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #fff, #ffe8ec);
+    color: var(--color-black);
+}
+.date__of__birth span { font-size: 1.2rem; font-weight: 700; margin: 0 40px; }
+.name span            { font-size: 1.7rem; margin: 0 20px; }
+
+/* =========================
+   Right Side Profile
+========================= */
+.right .box__account {
+    position: relative;
+    transform: translateY(700px);
+    animation: topBoxImage 4s 3s forwards ease-in;
+}
+@keyframes topBoxImage { to { transform: translateY(0); } }
+
+.content .right .image {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 6px solid var(--color-black);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .15);
+}
+.content .right .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================
+   Rotating Circle
+========================= */
+.cricle {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    animation: scaleCircle 2s 7s forwards ease-in-out;
+}
+@keyframes scaleCircle {
+    0%   { transform: scale(0); }
+    10%  { transform: scale(1.3); }
+    20%  { transform: scale(.7); }
+    30%, 100% { transform: scale(1); }
+}
+.text__cricle {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #ff8a9b, var(--color-text-pink));
+    border-radius: 50%;
+    border: 5px solid var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotateCricle 6s linear infinite;
+}
+@keyframes rotateCricle { to { transform: rotate(360deg); } }
+.text__cricle span {
+    top: 0;
+    left: 50%;
+    position: absolute;
+    color: var(--color-black);
+    transform: rotate(calc(var(--i) * 24deg));
+    transform-origin: 0 50px;
+    font-family: "Sriracha", cursive;
+    text-transform: uppercase;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.fa-heart {
+    color: var(--color-heart);
+    filter: drop-shadow(0 0 3px var(--color-heart));
+    animation: scaleHeart 1s infinite linear;
+}
+.cricle .fa-heart {
+    position: absolute;
+    transform: scale(.85);
+}
+@keyframes scaleHeart { 50% { transform: scale(1.2); } }
+
+/* =========================
+   Balloons
+========================= */
+.right .balloon_one {
+    position: absolute;
+    top: -70px;
+    left: -70px;
+    animation: balloon1 3s infinite ease-in-out;
+}
+@keyframes balloon1 {
+    0%, 50%, 100% { transform-origin: bottom right; transform: rotate(0deg); }
+    25% { transform-origin: bottom right; transform: rotate(3deg); }
+    75% { transform-origin: bottom right; transform: rotate(-3deg); }
+}
+.right .balloon_two {
+    position: absolute;
+    top: 170px;
+    right: -65px;
+    z-index: -1;
+    transform: rotate(10deg);
+    animation: balloon2 3s infinite ease-in-out;
+}
+@keyframes balloon2 {
+    0%, 50%, 100% { transform-origin: bottom left; transform: rotate(10deg); }
+    25% { transform-origin: bottom left; transform: rotate(7deg); }
+    75% { transform-origin: bottom left; transform: rotate(13deg); }
+}
+
+/* =========================
+   Decorations
+========================= */
+.decorate_star {
+    position: absolute;
+    transform: scale(0);
+    background-color: var(--color-black);
+    clip-path: polygon(0 50%, 35% 35%, 50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%);
+    animation: scaleCircle 1.5s var(--t) forwards,
+               scaleStar 2s 8s infinite ease-in-out;
+}
+.decorate_star.star1 { width: 20px; height: 20px; top: 75px;  left: 300px; }
+.decorate_star.star2 { width: 15px; height: 20px; top: 35px;  right: 360px; }
+.decorate_star.star3 { width: 14px; height: 14px; top: 290px; left: 630px; }
+.decorate_star.star4 { width: 18px; height: 18px; bottom: 60px; left: 35px; }
+.decorate_star.star5 { width: 16px; height: 18px; bottom: 140px; left: 500px; }
+@keyframes scaleStar {
+    25% { transform: scale(.8); }
+    50% { transform: scale(1.1); }
+}
+
+.decorate_bottom {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+}
+.decorate_flower--one,
+.decorate_flower--two,
+.decorate_flower--three {
+    position: absolute;
+    transform: scale(0);
+    animation: scaleCircle 1.5s var(--t) forwards ease-in-out;
+}
+.decorate_flower--one   { top: 250px; left: 50px; }
+.decorate_flower--two   { top: 225px; left: 540px; }
+.decorate_flower--three { top: 150px; right: 235px; }
+
+.smiley__icon {
+    position: absolute;
+    bottom: 180px;
+    left: 600px;
+    transform: scale(0);
+    animation: scaleCircle 1.5s 7s forwards ease-in-out;
+}
+
+/* =========================
+   Letter Modal (boxMail)
+========================= */
+.boxMail {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.5);
+    transition: all .45s ease;
+    z-index: 99999;
+    padding: 20px;
+}
+.boxMail.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+.boxMail .boxMail-container {
+    position: relative;
+    width: 750px;
+    max-width: 95vw;
+    height: 500px;
+    max-height: 85vh;
+    display: flex;
+    perspective: 2000px;
+    transition: transform .5s;
+}
+@media (hover: hover) {
+    .boxMail .boxMail-container:hover {
+        transform: rotate(-4deg);
+        filter: drop-shadow(0 0 18px var(--color-text-pink));
+    }
+    .boxMail .boxMail-container:hover .card1 {
+        transform: translate(-187px, -250px) rotateY(-140deg);
+    }
+    .boxMail .boxMail-container:hover .card2-content {
+        transform: translate(20px, 20px);
+        box-shadow: -1px -1px 5px rgba(0, 0, 0, .4);
+    }
+    .boxMail .boxMail-container:hover .card2 h3 {
+        opacity: 1;
+        visibility: visible;
+        padding: 20px 0 10px 152px;
+        transition: .6s .3s;
+    }
+    .boxMail .boxMail-container:hover .card2 h2 { opacity: 1; transition: .6s .8s; }
+    .boxMail .boxMail-container:hover .card2 .imageCute2 {
+        opacity: 1;
+        animation: cuteWiggle 1s linear infinite, cuteSlide 3s .5s forwards;
+    }
+}
+
+.boxMail .boxMail-container .card1,
+.boxMail .boxMail-container .card2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+.boxMail .boxMail-container .card1 {
+    width: 50%;
+    background: linear-gradient(to right, #ff7a8a, #ff7a8a 63%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: all 1s ease-in-out;
+}
+.boxMail .boxMail-container .card1 .userImg {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+    margin-bottom: 20px;
+}
+.boxMail .boxMail-container .card1 .userImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.boxMail .boxMail-container .card1 h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    text-transform: uppercase;
+    width: 80%;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 4px;
+    transform: rotate(-5deg);
+    text-shadow: 0 0 6px white, 0 0 12px white;
+}
+.boxMail .boxMail-container .card2 {
+    width: 50%;
+    background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: all 1s;
+}
+.boxMail .boxMail-container .card2 .card2-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #ff7a8a;
+    transition: all 1s;
+    overflow-y: auto;
+    color: #fff;
+    padding-bottom: 20px;
+}
+.boxMail .boxMail-container .card2 h3 {
+    font-family: 'Dancing Script', cursive;
+    padding: 20px 0 10px 60px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 24px;
+    text-shadow: 0 0 8px #ff7a8a;
+}
+.boxMail .boxMail-container .card2 h2 {
+    font-family: 'Dancing Script', cursive;
+    padding: 0 22px;
+    text-indent: 18px;
+    font-size: 20px;
+    line-height: 1.6;
+    opacity: 0;
+    font-weight: 500;
+}
+.boxMail .boxMail-container .card2 .card2-content .imageCute2 {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    opacity: 0;
+    transition: .5s;
+}
+.boxMail .boxMail-container .card2 .card2-content .imageCute2 img { width: 40px; }
+
+@keyframes cuteWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(5deg); }
+    75%      { transform: rotate(-5deg); }
+}
+@keyframes cuteSlide {
+    0%   { left: 20px; }
+    100% { left: 100px; }
+}
+
+.boxMail .fa-xmark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    padding: 15px 25px;
+    cursor: pointer;
+    color: white;
+    z-index: 100000;
+    transition: transform .3s;
+}
+.boxMail .fa-xmark:hover { transform: rotate(90deg); }
+
+/* =========================
+   Mobile Flip (Tap)
+========================= */
+@media (hover: none) {
+    .boxMail .boxMail-container.flipped {
+        transform: rotate(-2deg);
+    }
+    .boxMail .boxMail-container.flipped .card1 {
+        transform: translate(-187px, -250px) rotateY(-140deg);
+    }
+    .boxMail .boxMail-container.flipped .card2-content {
+        transform: translate(20px, 20px);
+        box-shadow: -1px -1px 5px rgba(0, 0, 0, .4);
+    }
+    .boxMail .boxMail-container .card2 h3 {
+        opacity: 1;
+        visibility: visible;
+        padding: 20px 0 10px 152px;
+    }
+    .boxMail .boxMail-container .card2 h2 { opacity: 1; }
+    .boxMail .boxMail-container .card2 .imageCute2 {
+        opacity: 1;
+        animation: cuteWiggle 1s linear infinite;
+    }
+}
+
+/* =========================
+   Responsive — Tablet (≤ 1024px)
+========================= */
+@media (max-width: 1024px) {
+    .content { padding: 2rem 1.5rem 0; gap: 1rem; }
+    .content .right .image { width: 320px; height: 320px; }
+    .title { font-size: 2.6rem; }
+    .title .hat { right: 0; }
+    .cricle { top: 10px; right: 0; }
+    .smiley__icon { left: 45%; bottom: 100px; }
+    .decorate_star.star3 { left: 55%; }
+    .decorate_flower--two { left: 55%; }
+}
+
+/* =========================
+   Responsive — Mobile (≤ 768px)
+========================= */
+@media (max-width: 768px) {
+    .flag__birthday .flag__left  { transform: rotate(-10deg) translate(-80px, 3px); }
+    .flag__birthday .flag__right { transform: rotate(10deg) translate(-80px, 39px) scaleX(-1); }
+    .flag__birthday img          { max-width: 220px; }
+
+    .content {
+        flex-direction: column;
+        padding: 2rem 1rem 3rem;
+        gap: 2rem;
+        text-align: center;
+    }
+    .content .left,
+    .content .right { width: 100%; }
+
+    .title { font-size: 2rem; letter-spacing: 6px; }
+    .title .hat { right: -30px; top: -30px !important; }
+    .title .hat img { width: 90px; }
+
+    #btn__letter { padding: 9px 20px; font-size: .95rem; }
+
+    .content .right .image { width: 240px; height: 240px; }
+
+    .cricle { top: 0; right: -10px; }
+    .text__cricle { width: 90px; height: 90px; border-width: 4px; }
+    .text__cricle span { transform-origin: 0 40px; font-size: .6rem; }
+
+    .name { padding: 2px 12px; bottom: -14px; }
+    .name span { font-size: 1.2rem; }
+
+    .right .balloon_one { top: 10px; left: -40px; }
+    .right .balloon_one img { width: 70px !important; }
+    .right .balloon_two { top: 140px; right: -30px; }
+    .right .balloon_two img { width: 70px !important; }
+
+    .decorate_star,
+    .decorate_flower--one,
+    .decorate_flower--two,
+    .decorate_flower--three { display: none; }
+
+    .smiley__icon { display: none; }
+    .decorate_bottom img { width: 70px; }
+
+    /* Letter modal on mobile */
+    .boxMail .boxMail-container {
+        width: 92vw;
+        height: 70vh;
+        flex-direction: row;
+    }
+    .boxMail .boxMail-container .card1 h3 { font-size: 26px; }
+    .boxMail .boxMail-container .card2 h2 { font-size: 16px; padding: 0 14px; }
+    .boxMail .boxMail-container .card2 h3 { font-size: 20px; padding-left: 30px; }
+
+    .boxMail .boxMail-container.flipped .card1 {
+        transform: translate(-130px, -180px) rotateY(-140deg);
+    }
+}
+
+/* =========================
+   Responsive — Small phones (≤ 480px)
+========================= */
+@media (max-width: 480px) {
+    .title { font-size: 1.5rem; letter-spacing: 4px; }
+    .title .hat { right: -40px; top: -20px !important; }
+    .title .hat img { width: 65px; }
+
+    .content .right .image { width: 190px; height: 190px; border-width: 5px; }
+
+    #btn__letter { padding: 8px 16px; font-size: .85rem; }
+
+    .date__of__birth { animation-fill-mode: forwards; }
+    .date__of__birth span { margin: 0 22px; font-size: 1rem; }
+
+    .boxMail .boxMail-container {
+        height: 75vh;
+    }
+    .boxMail .boxMail-container .card1 h3 { font-size: 20px; letter-spacing: 2px; }
+    .boxMail .boxMail-container .card1 .userImg { width: 60px; height: 60px; }
+    .boxMail .boxMail-container .card2 h2 { font-size: 14px; text-indent: 12px; }
+    .boxMail .boxMail-container .card2 h3 { font-size: 17px; padding: 14px 0 8px 24px; }
+
+    .boxMail .boxMail-container.flipped .card1 {
+        transform: translate(-90px, -140px) rotateY(-140deg);
+    }
+}
+
+/* =========================
+   Accessibility — Reduced Motion
+========================= */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+}
